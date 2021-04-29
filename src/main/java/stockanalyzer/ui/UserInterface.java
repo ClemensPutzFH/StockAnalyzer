@@ -13,32 +13,60 @@ public class UserInterface
 	private Controller ctrl = new Controller();
 
 	public void getDataFromCtrl1(){
-		ctrl.process("ABC");
+		try {
+			ctrl.process("REGI");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void getDataFromCtrl2(){
+		try {
+			ctrl.process("SGRE.MC");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void getDataFromCtrl3(){
-
+		try {
+			ctrl.process("AAPL");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	public void getDataFromCtrl4(){
-
+		try {
+			ctrl.getMax("REGI");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void getDataForCustomInput() {
-		
+		try {
+			ctrl.getMin("REGI");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
+	public static void print(String s){
+		System.out.println(s);
+	}
+
+	public static void printError(String s){
+		System.out.println(s);
+	}
 
 	public void start() {
 		Menu<Runnable> menu = new Menu<>("User Interfacx");
 		menu.setTitel("Wählen Sie aus:");
-		menu.insert("a", "Choice 1", this::getDataFromCtrl1);
-		menu.insert("b", "Choice 2", this::getDataFromCtrl2);
-		menu.insert("c", "Choice 3", this::getDataFromCtrl3);
-		menu.insert("d", "Choice User Imput:",this::getDataForCustomInput);
-		menu.insert("z", "Choice User Imput:",this::getDataFromCtrl4);
+		menu.insert("a", "Renewable Energy Group, Inc. (REGI)", this::getDataFromCtrl1);
+		menu.insert("b", "Siemens Gamesa Renewable Energy, S.A. (SGRE.MC)", this::getDataFromCtrl2);
+		menu.insert("c", "Apple Inc. (AAPL)", this::getDataFromCtrl3);
+		menu.insert("d", "MIN: Renewable Energy Group, Inc. (REGI)",this::getDataForCustomInput);
+		menu.insert("z", "MAX: Renewable Energy Group, Inc. (REGI)",this::getDataFromCtrl4);
 		menu.insert("q", "Quit", null);
 		Runnable choice;
 		while ((choice = menu.exec()) != null) {
