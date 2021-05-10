@@ -1,5 +1,6 @@
 package stockanalyzer.ctrl;
 
+import stockanalyzer.downloader.Downloader;
 import stockanalyzer.ui.UserInterface;
 import yahooApi.YahooFinance;
 import yahooApi.beans.QuoteResponse;
@@ -51,6 +52,10 @@ public class Controller {
 			UserInterface.print("Min: "+result);
 	}
 
+
+	public void downloadTickers(List<String> tickers, Downloader downloader) {
+		downloader.process(tickers);
+	}
 
 	public void closeConnection() {
 		
